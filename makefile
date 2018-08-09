@@ -1,6 +1,10 @@
 CXX = clang++
-OBJS = Cursor.o
+OBJS = Cursor.o test.o
 
+all: main
 
-cursor: $(OBJS)
-	$(CXX) $(OBJS) -o Cursor
+main: $(OBJS) 
+	$(CXX) $(OBJS)  -o Cursor
+
+clean:
+	-rm -f *.o core *.core
