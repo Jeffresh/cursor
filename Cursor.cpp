@@ -25,3 +25,11 @@ void Cursor::end()
 	}
 }
 
+
+/*std::ostream& operator <<(std::ostream& os,const Cursor& C )
+{
+	os<<C.l_.rgt.tope();
+
+	return os;
+}
+*/

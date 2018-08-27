@@ -8,6 +8,8 @@ int main()
 
 	char c;
 
+	std::string cursor;
+
 
 
 	do 
@@ -39,6 +41,8 @@ int main()
 
 			default: cursor.insert(c);
 		}
+
+		std::cout<<cursor;
 	} while(c != 'x');
 
 

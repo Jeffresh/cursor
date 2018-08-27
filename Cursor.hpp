@@ -2,6 +2,7 @@
 #define CURSOR_HPP
 
 #include "pila_enla.hpp" //dinamic_queue 
+#include<iostream>
 
 
 class Cursor
@@ -51,7 +52,7 @@ inline Cursor::Cursor():l_{}{}
 
 inline void Cursor::forward()
 {
-	if(!l_.empty())
+	if(!l_.rgt.vacia())
 	{
 		l_.lft.push(l_.rgt.tope());
 		l_.rgt.pop();
@@ -69,25 +70,24 @@ inline void Cursor::back()
 
 inline void Cursor::del()
 {
-	if(!l_.empty())
-		l_.rgt.pop();
+	if(!l_.lft.vacia())
+		l_.lft.pop();
 
 }
 
 inline void Cursor::del_backspace()
 {
-	if(!l_.empty())
-	{
-		l_.lft.push(l_.rgt.tope());
-		l_.rgt.pop();
-	}
+	back();
+	del();
+	forward();
+	
 
 }
 
 
 inline void Cursor::insert(const char c)
 {
-	l_.rgt.push(c);
+	l_.lft.push(c);
 }
 
 inline void Cursor::in_overwrite(const char c)
@@ -101,6 +101,21 @@ inline void Cursor::in_overwrite(const char c)
 		l_.rgt.push(c);
 }
 
+void Cursor::beginning()
+{
+	while(!l_.lft.vacia())
+		back();
+	
+}
 
+void Cursor::end()
+{
+	while(!l_.rgt.vacia())
+		forward();
+}
+
+/*
+std::ostream& operator <<(std::ostream&,const Cursor& )
+*/
 
 #endif // cursor_HPP
